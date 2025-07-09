@@ -1,0 +1,36 @@
+@use "../../styles/index.scss";
+
+.dog {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  cursor: pointer;
+
+  &__img {
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+    filter: brightness(100%);
+    -webkit-filter: brightness(100%);
+
+    &:hover {
+      filter: brightness(70%);
+      -webkit-filter: brightness(70%);
+    }
+  }
+
+  &__video {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+  }
+
+  &__play {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    max-width: 50px;
+  }
+}
