@@ -2,7 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { MainPage } from './pages/MainPage/MainPage'
 import { NotFound } from './pages/NotFound/NotFound'
 import { Header } from './components/Header/Header'
-import { SavePage } from './pages/SavePage/SavePage'
+import { TopScrollButton } from './ui/TopScrollButton/TopScrollButton'
+/* import { SavePage } from './pages/SavePage/SavePage' */
 
 function App() {
 
@@ -14,10 +15,11 @@ function App() {
           <Routes>
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<MainPage />} />
-            <Route path="/save" element={<SavePage />} />
+            <Route path="/save" element={<MainPage />} />
           </Routes>
         </main>
       </div>
+      <TopScrollButton />
     </BrowserRouter>
   )
 }

@@ -3,6 +3,7 @@
 .header {
   position: relative;
   padding: 20px;
+  min-height: 600px;
   background-color: var(--red);
 
   &__container {

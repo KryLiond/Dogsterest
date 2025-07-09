@@ -29,7 +29,7 @@
 
   &__link::after {
     @include linkAfter();
-    background-color: var(--violet);
+    background-color: var(--black);
     transform: scaleX(0);
   }
 
@@ -39,7 +39,7 @@
 
   &__link.active::after {
     @include linkAfter();
-    background-color: var(--purle);
+    background-color: var(--white);
     transform: scaleX(1);
   }
 }

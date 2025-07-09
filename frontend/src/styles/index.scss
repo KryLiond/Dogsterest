@@ -84,7 +84,6 @@ button:disabled {
 .wrapper {
   display: grid;
   grid-template-columns: 150px 1fr;
-  height: 100vh;
 }
 
 .container {
@@ -130,17 +129,13 @@ button:disabled {
 
 .btn {
   padding: 5px 35px;
-  border: 3px solid var(--red);
-  background-color: var(--white);
+  background-color: var(--red);
   border-radius: 5px;
-  color: var(--black);
+  color: var(--white);
 }
 
 .btn:hover {
-  background-color: var(--red);
-  color: var(--white);
-  /*   border: 3px solid var(--green);
-  color: var(--orange); */
+  background-color: red;
 }
 
 @media (max-width: $container-l) {

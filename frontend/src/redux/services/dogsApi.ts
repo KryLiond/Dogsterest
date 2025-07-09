@@ -7,11 +7,11 @@ interface DogQueryParams {
 
 export const dogsApi = createApi({
   reducerPath: "dogsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://random.dog/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4200/api/" }),
   endpoints: (build) => ({
     getDogs: build.query<string[], DogQueryParams>({
       query: ({ page, count }) => ({
-        url: `doggos`,
+        url: `dogs`,
         params: {
           page: page,
           count: count,

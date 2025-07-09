@@ -1,19 +1,22 @@
 import './DogItem.scss'
-import { useRef, useState, type FC } from 'react'
+import { memo, useRef, useState, type FC } from 'react'
 import play from '../../assets/img/play.png'
+import { SaveButton } from '../../ui/SaveButton/SaveButton'
 
 interface DogItemProps {
     dog: string
 }
 
-export const DogItem: FC<DogItemProps> = ({ dog }) => {
+const HOST = 'http://localhost:4200/api/dog/'
 
-    const HOST = 'https://random.dog/'
+const DogItemComponent: FC<DogItemProps> = ({ dog }) => {
 
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isHovered, setIsHovered] = useState(false)
 
     const handleMouseEnter = () => {
+        setIsHovered(true)
         if (isVideo && videoRef.current) {
             videoRef.current.play();
             setIsPlaying(true);
@@ -21,10 +24,11 @@ export const DogItem: FC<DogItemProps> = ({ dog }) => {
     };
 
     const handleMouseLeave = () => {
+        setIsHovered(false)
         if (isVideo && videoRef.current) {
             videoRef.current.pause();
             setIsPlaying(false);
-            videoRef.current.currentTime = 0; // Reset to the beginning
+            videoRef.current.currentTime = 0;
         }
     };
 
@@ -50,9 +54,11 @@ export const DogItem: FC<DogItemProps> = ({ dog }) => {
             {isImage && (
                 <img className='dog__img' src={HOST + dog} alt={dog} />
             )}
-
+            {isHovered && (
+                <SaveButton dog={dog} />
+            )}
         </article>
-
-
     )
 }
+
+export const DogItem = memo(DogItemComponent);

@@ -44,4 +44,8 @@
     display: flex;
     gap: 20px;
   }
+
+  &__top {
+    color: var(--red);
+  }
 }
