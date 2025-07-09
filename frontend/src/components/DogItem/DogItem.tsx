@@ -2,24 +2,25 @@ import './DogItem.scss'
 import { memo, useRef, useState, type FC } from 'react'
 import play from '../../assets/img/play.png'
 import { SaveButton } from '../../ui/SaveButton/SaveButton'
+import { LikeButton } from '../../ui/LikeButton/LikeButton';
 
 interface DogItemProps {
     dog: string
+    randomNumber: number
 }
 
 const HOST = 'http://localhost:4200/api/dog/'
 
-const DogItemComponent: FC<DogItemProps> = ({ dog }) => {
+const DogItemComponent: FC<DogItemProps> = ({ dog, randomNumber }) => {
 
     const videoRef = useRef<HTMLVideoElement | null>(null);
-    const [isPlaying, setIsPlaying] = useState(false);
     const [isHovered, setIsHovered] = useState(false)
+
 
     const handleMouseEnter = () => {
         setIsHovered(true)
         if (isVideo && videoRef.current) {
             videoRef.current.play();
-            setIsPlaying(true);
         }
     };
 
@@ -27,7 +28,6 @@ const DogItemComponent: FC<DogItemProps> = ({ dog }) => {
         setIsHovered(false)
         if (isVideo && videoRef.current) {
             videoRef.current.pause();
-            setIsPlaying(false);
             videoRef.current.currentTime = 0;
         }
     };
@@ -36,8 +36,8 @@ const DogItemComponent: FC<DogItemProps> = ({ dog }) => {
     const isImage = dog.toLowerCase().endsWith('.jpg') || dog.toLowerCase().endsWith('.jpeg') || dog.toLowerCase().endsWith('.png') || dog.toLowerCase().endsWith('.gif');
 
     return (
-        <article onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave} className='dog'>
+        <article onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='dog'>
+            <LikeButton randomNumber={randomNumber} />
             {isVideo && (
                 <div className="dog__video">
                     <video
@@ -48,7 +48,7 @@ const DogItemComponent: FC<DogItemProps> = ({ dog }) => {
                     >
                         <source src={HOST + dog} type="video/mp4" />
                     </video>
-                    <img style={{ display: isPlaying ? 'none' : 'block' }} className="dog__play" src={play} alt='play' />
+                    <img style={{ display: isHovered ? 'none' : 'block' }} className="dog__play" src={play} alt='play' />
                 </div>
             )}
             {isImage && (

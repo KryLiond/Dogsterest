@@ -1,6 +1,7 @@
 import "./TopScrollButton.scss";
 import { useState } from "react";
 import svg from "../../assets/img/sprite.svg";
+import { handlerTop } from "../../utils/utils";
 
 export const TopScrollButton = () => {
   const [visible, setVisible] = useState(false);
@@ -16,13 +17,6 @@ export const TopScrollButton = () => {
     },
     { passive: true }
   );
-
-  const handlerTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <button

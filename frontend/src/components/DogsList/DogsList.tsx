@@ -4,6 +4,7 @@ import { dogsApi } from '../../redux/services/dogsApi'
 import { DogItem } from '../DogItem/DogItem'
 import { SkeletonList } from '../../ui/SkeletonList/SkeletonList'
 import { useLocation } from 'react-router-dom';
+import { generateRandomNumbers, handlerTop } from '../../utils/utils'
 
 export const DogsList = () => {
 
@@ -16,6 +17,8 @@ export const DogsList = () => {
     const loadingMore = useRef(false); // предотвратить множественные запросы, пока запрос выполняется
     const { data: dogsArrFromApi, isLoading, error, refetch } = dogsApi.useGetDogsQuery({ page: page, count: itemsPerPage });
 
+    //  Генерируем случайные числа для лайков
+    const randomNumbers = generateRandomNumbers(dogs.length, 1, 50);
 
     // Загрузка данных из localStorage 
     useEffect(() => {
@@ -74,14 +77,7 @@ export const DogsList = () => {
         loadingMore.current = false;
     };
 
-    const handlerTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
-
-    // обработка сценария изображения отсутсвуют
+    // обработка сценария - изображения отсутсвуют
     const [noImagesMessage, setNoImagesMessage] = useState(false);
 
     useEffect(() => {
@@ -108,7 +104,7 @@ export const DogsList = () => {
                 <ul className='dogs__list'>
                     {dogs.map((dog, index) => (
                         <li className='dogs__item' key={index}>
-                            <DogItem dog={dog} />
+                            <DogItem dog={dog} randomNumber={randomNumbers[index]} />
                         </li>
                     ))}
                 </ul>
